@@ -6,12 +6,31 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json()); //req.body
 
+const calculate = (firstNumber, secondNumber, operator) => {
+  switch (operator) {
+    case "+":
+      return firstNumber + secondNumber;
+    case "-":
+      return firstNumber - secondNumber;
+    case "*":
+      return firstNumber * secondNumber;
+    case "/":
+      return firstNumber / secondNumber;
+    default:
+      return "Invalid operator";
+  }
+};
+
 //routes
 app.get("/api/results", function (req, res) {
-  const user_id = req.query.id;
+  const firstNumber = req.query.first_number;
+  const secondNumber = req.query.second_number;
+  const operator = req.query.operator;
+
+  const result = calculate(firstNumber, secondNumber, operator);
 
   res.send({
-    user_id: user_id,
+    result: result,
   });
 });
 app.get("/", function (req, res) {
