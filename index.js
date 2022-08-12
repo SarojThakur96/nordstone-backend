@@ -7,14 +7,17 @@ app.use(cors());
 app.use(express.json()); //req.body
 
 //routes
-app.get("/api/users", function (req, res) {
+app.get("/api/results", function (req, res) {
   const user_id = req.query.id;
 
   res.send({
     user_id: user_id,
   });
 });
+app.get("/", function (req, res) {
+  res.send("Server is running");
+});
 
-app.listen(5000, () => {
-  console.log("server running at port 5000");
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`server running at port ${process.env.PORT || 5000}`);
 });
