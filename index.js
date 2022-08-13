@@ -8,8 +8,8 @@ app.use(express.json()); //req.body
 
 //routes
 app.get("/api/results", function (req, res) {
-  const firstNumber = req.query.first_number;
-  const secondNumber = req.query.second_number;
+  const firstNumber = parseFloat(req.query.first_number);
+  const secondNumber = parseFloat(req.query.second_number);
   const operator = req.query.operator;
 
   if (operator === "addition") {
